@@ -14,14 +14,16 @@ Summary: Provides a high-level R interface to  data files written using Unidata'
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/r-ncdf4-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/r-ncdf4-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/r-ncdf4-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/r-ncdf4-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/r-ncdf4-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/r-ncdf4-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/r-ncdf4-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/r-ncdf4-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/r-ncdf4-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/r-ncdf4-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/r-ncdf4-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/r-ncdf4-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/r-ncdf4/badges/version.svg)](https://anaconda.org/conda-forge/r-ncdf4)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/r-ncdf4/badges/downloads.svg)](https://anaconda.org/conda-forge/r-ncdf4)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-r--ncdf4-green.svg)](https://anaconda.org/conda-forge/r-ncdf4) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/r-ncdf4.svg)](https://anaconda.org/conda-forge/r-ncdf4) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/r-ncdf4.svg)](https://anaconda.org/conda-forge/r-ncdf4) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/r-ncdf4.svg)](https://anaconda.org/conda-forge/r-ncdf4) |
 
 Installing r-ncdf4
 ==================
