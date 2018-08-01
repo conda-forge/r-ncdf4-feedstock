@@ -14,25 +14,26 @@ source:
     - win.patch
 
 build:
+  merge_build_host: True  # [win]
   skip: True  # [win32]
-  number: 2
+  number: 3
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - r-base
     - posix  # [win64]
-    - m2w64-toolchain  # [win64]
-    - gcc  # [not win]
-    - libnetcdf 4.5.*
-    - hdf5 1.10.1
+    - {{ compiler('c') }}        # [unix]
+    - {{ compiler('m2w64_c') }}  # [win]
+  host:
+    - r-base
+    - libnetcdf
+    - hdf5
   run:
     - r-base
-    - libgcc  # [not win]
-    - libnetcdf >=4.5
-    - hdf5 1.10.1
+    - libnetcdf
+    - hdf5
 
 test:
   commands:
