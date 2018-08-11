@@ -15,15 +15,14 @@ source:
 
 build:
   merge_build_host: True  # [win]
-  skip: True  # [win32]
-  number: 3
+  number: 4
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix  # [win64]
+    - posix  # [win]
     - {{ compiler('c') }}        # [unix]
     - {{ compiler('m2w64_c') }}  # [win]
   host:
@@ -39,8 +38,6 @@ test:
   commands:
     - R -e "library('ncdf4')"  # [not win]
     - R -e \"library('ncdf4')\"  # [win]
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
   home: http://cirrus.ucsd.edu/~pierce/ncdf
