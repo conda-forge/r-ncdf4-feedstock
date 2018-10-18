@@ -1,60 +1,82 @@
 {% set version = '1.16' %}
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-ncdf4
-  version: {{ version }}
+  version: {{ version|replace("-", "_") }}
 
 source:
   fn: ncdf4_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/ncdf4_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/ncdf4/ncdf4_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/ncdf4_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/ncdf4/ncdf4_{{ version }}.tar.gz
   sha256: edd5731a805bbece3a8f6132c87c356deafc272351e1dd07256ca00574949253
   patches:
     - win.patch
 
 build:
   merge_build_host: True  # [win]
-  number: 4
+  number: 5
+  skip: true  # [win32]
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix  # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}sed               # [win]
+    - {{posix}}grep              # [win]
+    - {{posix}}autoconf
+    - {{posix}}automake          # [not win]
+    - {{posix}}automake-wrapper  # [win]
+    - {{posix}}pkg-config
+    - {{posix}}make
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - libnetcdf
     - hdf5
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - libnetcdf
     - hdf5
 
 test:
   commands:
-    - R -e "library('ncdf4')"  # [not win]
-    - R -e \"library('ncdf4')\"  # [win]
+    - $R -e "library('ncdf4')"           # [not win]
+    - "\"%R%\" -e \"library('ncdf4')\""  # [win]
 
 about:
   home: http://cirrus.ucsd.edu/~pierce/ncdf
-  license: GPL-3.0
-  summary: "Provides a high-level R interface to  data files written using Unidata's netCDF library
-    (version 4 or earlier), which are binary data files that are portable  across platforms
-    and include metadata information in addition to the data sets.   Using this package,
-    netCDF files (either version 4  or 'classic' version 3) can be opened and data sets
-    read in easily. It is also easy to create new netCDF dimensions, variables, and
-    files, in either version 3 or 4 format, and manipulate existing netCDF files. This
+  license: GPL (>= 3)
+  summary: Provides a high-level R interface to data files written using Unidata's netCDF library
+    (version 4 or earlier), which are binary data files that are portable across platforms
+    and include metadata information in addition to the data sets.  Using this package,
+    netCDF files (either version 4 or "classic" version 3) can be opened and data sets
+    read in easily.  It is also easy to create new netCDF dimensions, variables, and
+    files, in either version 3 or 4 format, and manipulate existing netCDF files.  This
     package replaces the former ncdf package, which only worked with netcdf version
     3 files.  For various reasons the names of the functions have had to be changed
     from the names in the ncdf package.  The old ncdf package is still available at
-    the URL given below, if you need to have backward compatibility. It should be possible
-    to have both the ncdf and ncdf4 packages installed simultaneously without a problem.
-    However, the ncdf package does not provide an interface for netcdf version 4 files."
+    the URL given below, if you need to have backward compatibility.  It should be possible
+    to have both the ncdf and ncdf4 packages installed simultaneously without a problem.  However,
+    the ncdf package does not provide an interface for netcdf version 4 files.
+  license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
     - ocefpaf
+    - johanneskoester
+    - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
