@@ -3,7 +3,7 @@ About r-ncdf4
 
 Home: http://cirrus.ucsd.edu/~pierce/ncdf
 
-Package license: GPL (>= 3)
+Package license: GPL-3
 
 Feedstock license: BSD 3-Clause
 
