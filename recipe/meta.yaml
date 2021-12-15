@@ -1,4 +1,4 @@
-{% set version = "1.18" %}
+{% set version = "1.19" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/ncdf4_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/ncdf4/ncdf4_{{ version }}.tar.gz
-  sha256: a1688badceb496703a4524615b046030e532091d61a466488653da6cbce2db79
+  sha256: cb8d139211fc7475c435ce9f6a43e47710603409dc523b053c8b7de9848dfb63
 
 build:
   merge_build_host: true  # [win]
