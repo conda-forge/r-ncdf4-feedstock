@@ -15,7 +15,7 @@ docker_image:
 hdf5:
 - 1.14.0
 libnetcdf:
-- 4.9.1
+- 4.9.2
 pin_run_as_build:
   r-base:
     min_pin: x.x
