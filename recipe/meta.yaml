@@ -1,6 +1,5 @@
 {% set version = "1.22" %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-ncdf4
@@ -13,8 +12,7 @@ source:
   sha256: b9a9a2004f4c008d665afbe617f4e4b45e57dc70e303c8ec341aa5a51fbb1210
 
 build:
-  merge_build_host: true  # [win]
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -23,7 +21,9 @@ requirements:
   build:
     - cross-r-base {{ r_base }}  # [build_platform != target_platform]
     - {{ compiler('c') }}              # [not win]
+    - {{ stdlib("c") }}                # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}sed               # [win]
     - {{ posix }}grep              # [win]
@@ -40,7 +40,6 @@ requirements:
     - hdf5
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - libnetcdf
     - hdf5
 
