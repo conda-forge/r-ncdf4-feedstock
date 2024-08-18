@@ -1,4 +1,4 @@
-{% set version = "1.22" %}
+{% set version = "1.23" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/ncdf4_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/ncdf4/ncdf4_{{ version }}.tar.gz
-  sha256: b9a9a2004f4c008d665afbe617f4e4b45e57dc70e303c8ec341aa5a51fbb1210
+  sha256: 8b05fee9f79dc0605e487dd5d031d2c7dcaedec8f47904983b1c26739894da89
 
 build:
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
